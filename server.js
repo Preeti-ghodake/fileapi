@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const { StastusCodes } = require('http-status-codes')
+const { StatusCodes } = require('http-status-codes')
 const fileUpload = require('express-fileupload')
 const connectDb = require('./db/connect')
 
@@ -26,7 +26,7 @@ app.use(fileUpload({ useTempFiles: true}))
 
 // index route
 app.get(`/`, async (req,res) => {
-    res.status(StastusCodes.OK).json({ msg: `Welcome to REST API`})
+    res.status(StatusCodes.OK).json({ msg: `Welcome to REST API`})
 })
 
 // custom routes
@@ -38,7 +38,7 @@ app.use(`/api/document`, require('./route/fileRoute'))
 
 // default (not found) route
 app.all(`/**`, async (req,res) => {
-    res.status(StastusCodes.NOT_FOUND).json({ msg: `Requested Path Not Found`})
+    res.status(StatusCodes.NOT_FOUND).json({ msg: `Requested Path Not Found`})
 })
 
 // port listerner
